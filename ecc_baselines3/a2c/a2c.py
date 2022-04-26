@@ -4,10 +4,10 @@ import torch as th
 from gym import spaces
 from torch.nn import functional as F
 
-from stable_baselines3.common.on_policy_algorithm import OnPolicyAlgorithm
-from stable_baselines3.common.policies import ActorCriticCnnPolicy, ActorCriticPolicy, BasePolicy, MultiInputActorCriticPolicy
-from stable_baselines3.common.type_aliases import GymEnv, MaybeCallback, Schedule
-from stable_baselines3.common.utils import explained_variance
+from ecc_baselines3.common.on_policy_algorithm import OnPolicyAlgorithm
+from ecc_baselines3.common.policies import ActorCriticCnnPolicy, ActorCriticPolicy, BasePolicy, MultiInputActorCriticPolicy
+from ecc_baselines3.common.type_aliases import GymEnv, MaybeCallback, Schedule
+from ecc_baselines3.common.utils import explained_variance
 
 
 class A2C(OnPolicyAlgorithm):
