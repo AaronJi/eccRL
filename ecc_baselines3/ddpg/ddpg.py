@@ -4,10 +4,10 @@ import torch as th
 
 from stable_baselines3.common.buffers import ReplayBuffer
 from stable_baselines3.common.noise import ActionNoise
-from stable_baselines3.common.off_policy_algorithm import OffPolicyAlgorithm
+from ecc_baselines3.common.off_policy_algorithm import OffPolicyAlgorithm
 from stable_baselines3.common.type_aliases import GymEnv, MaybeCallback, Schedule
-from stable_baselines3.td3.policies import TD3Policy
-from stable_baselines3.td3.td3 import TD3
+from ecc_baselines3.td3.policies import TD3Policy
+from ecc_baselines3.td3.td3 import TD3
 
 
 class DDPG(TD3):

@@ -101,7 +101,7 @@ class OffPolicyAlgorithm(BaseAlgorithm):
         sde_support: bool = True,
         supported_action_spaces: Optional[Tuple[gym.spaces.Space, ...]] = None,
     ):
-        print('****')
+
         super(OffPolicyAlgorithm, self).__init__(
             policy=policy,
             env=env,
