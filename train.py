@@ -9,7 +9,8 @@ import gym
 import numpy as np
 import seaborn
 import torch as th
-from stable_baselines3.common.utils import set_random_seed
+# from stable_baselines3.common.utils import set_random_seed
+from ecc_baselines3.common.utils import set_random_seed
 
 # Register custom envs
 import utils.import_envs  # noqa: F401 pytype: disable=import-error

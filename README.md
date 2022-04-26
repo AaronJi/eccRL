@@ -8,8 +8,17 @@ Goals of this repository:
 
 ## developed codebases
 
--rl-baselines3-zoo (https://github.com/DLR-RM/rl-baselines3-zoo)
--stable-baselines (https://github.com/DLR-RM/stable-baselines3)
+- rl-baselines3-zoo (https://github.com/DLR-RM/rl-baselines3-zoo)
+- stable-baselines (https://github.com/DLR-RM/stable-baselines3)
+
+
+## Training with parallel mode
+```
+python train.py --algo ppo --env CartPole-v1 --tensorboard-log /tmp/stable-baselines/
+python train.py --algo sac --env Pendulum-v1 --save-replay-buffer
+python train.py --algo sac --env HalfCheetah-v3 --eval-freq 10000 --eval-episodes 10 --n-eval-envs 1
+python train.py --algo td3 --env HalfCheetah-v3 --save-freq 100000
+```
 
 ## Train an Agent
 
