@@ -12,13 +12,29 @@ Goals of this repository:
 - stable-baselines (https://github.com/DLR-RM/stable-baselines3)
 
 
-## Training with parallel mode
+## Training
+
 ```
 python train.py --algo ppo --env CartPole-v1 --tensorboard-log /tmp/stable-baselines/
 python train.py --algo sac --env Pendulum-v1 --save-replay-buffer
 python train.py --algo sac --env HalfCheetah-v3 --eval-freq 10000 --eval-episodes 10 --n-eval-envs 1
 python train.py --algo td3 --env HalfCheetah-v3 --save-freq 100000
+python train.py --algo ddpg --env Pendulum-v1
+python train.py --algo dqn --env MountainCar-v0
 ```
+
+### the classical mode
+when n_env = 1
+
+### the parallel mode
+when n_env > 1
+
+### the MCC mode
+
+
+### the federated mode
+
+
 
 ## Train an Agent
 
@@ -72,7 +88,7 @@ python scripts/plot_train.py -a her -e Fetch -y success -f rl-trained-agents/ -w
 Plot evaluation reward curve for TQC, SAC and TD3 on the HalfCheetah and Ant PyBullet environments:
 
 ```
-python scripts/all_plots.py -a sac td3 tqc --env HalfCheetah Ant -f rl-trained-agents/
+python scripts/all_plots.py -a sac td3 tqc --env HalfCheetahBullet AntBullet -f rl-trained-agents/
 ```
 
 ## Plot with the rliable library

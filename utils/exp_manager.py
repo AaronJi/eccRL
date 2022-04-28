@@ -19,15 +19,15 @@ from optuna.visualization import plot_optimization_history, plot_param_importanc
 from sb3_contrib.common.vec_env import AsyncEval
 
 # For using HER with GoalEnv
-from stable_baselines3 import HerReplayBuffer  # noqa: F401
-from stable_baselines3.common.base_class import BaseAlgorithm
-from stable_baselines3.common.callbacks import BaseCallback, CheckpointCallback, EvalCallback
-from stable_baselines3.common.env_util import make_vec_env
-from stable_baselines3.common.noise import NormalActionNoise, OrnsteinUhlenbeckActionNoise
-from stable_baselines3.common.preprocessing import is_image_space, is_image_space_channels_first
-from stable_baselines3.common.sb2_compat.rmsprop_tf_like import RMSpropTFLike  # noqa: F401
-from stable_baselines3.common.utils import constant_fn
-from stable_baselines3.common.vec_env import (
+from ecc_baselines3 import HerReplayBuffer  # noqa: F401
+from ecc_baselines3.common.base_class import BaseAlgorithm
+from ecc_baselines3.common.callbacks import BaseCallback, CheckpointCallback, EvalCallback
+from ecc_baselines3.common.env_util import make_vec_env
+from ecc_baselines3.common.noise import NormalActionNoise, OrnsteinUhlenbeckActionNoise
+from ecc_baselines3.common.preprocessing import is_image_space, is_image_space_channels_first
+from ecc_baselines3.common.sb2_compat.rmsprop_tf_like import RMSpropTFLike  # noqa: F401
+from ecc_baselines3.common.utils import constant_fn
+from ecc_baselines3.common.vec_env import (
     DummyVecEnv,
     SubprocVecEnv,
     VecEnv,
