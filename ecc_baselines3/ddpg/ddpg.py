@@ -2,8 +2,8 @@ from typing import Any, Dict, Optional, Tuple, Type, Union
 
 import torch as th
 
-from stable_baselines3.common.buffers import ReplayBuffer
-from stable_baselines3.common.noise import ActionNoise
+from ecc_baselines3.common.buffers import ReplayBuffer
+from ecc_baselines3.common.noise import ActionNoise
 from ecc_baselines3.common.off_policy_algorithm import OffPolicyAlgorithm
 from ecc_baselines3.common.type_aliases import GymEnv, MaybeCallback, Schedule
 from ecc_baselines3.td3.policies import TD3Policy

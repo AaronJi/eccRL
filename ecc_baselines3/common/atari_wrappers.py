@@ -9,7 +9,7 @@ try:
 except ImportError:
     cv2 = None
 
-from stable_baselines3.common.type_aliases import GymObs, GymStepReturn
+from ecc_baselines3.common.type_aliases import GymObs, GymStepReturn
 
 
 class NoopResetEnv(gym.Wrapper):

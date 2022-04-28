@@ -35,6 +35,22 @@ when n_env > 1
 ### the federated mode
 
 
+## plot 
+
+Plot training success (y-axis) w.r.t. timesteps (x-axis) with a moving window of 500 episodes for all the `Fetch` environment with `HER` algorithm:
+
+```
+python scripts/plot_train.py -a her -e Fetch -y success -f rl-trained-agents/ -w 500 -x steps
+```
+
+Plot evaluation reward curve for TQC, SAC and TD3 on the HalfCheetah and Ant PyBullet environments:
+
+```
+python scripts/all_plots.py -a sac td3 tqc --env HalfCheetahBullet AntBullet -f rl-trained-agents/
+```
+
+
+# below  is the original SB3-zoo instructions
 
 ## Train an Agent
 

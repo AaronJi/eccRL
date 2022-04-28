@@ -3,7 +3,7 @@ from typing import Dict, Union
 import gym
 import numpy as np
 
-from stable_baselines3.common.type_aliases import GymStepReturn
+from ecc_baselines3.common.type_aliases import GymStepReturn
 
 
 class SimpleMultiObsEnv(gym.Env):

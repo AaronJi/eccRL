@@ -2,7 +2,7 @@ import warnings
 
 import numpy as np
 
-from stable_baselines3.common.vec_env.base_vec_env import VecEnv, VecEnvObs, VecEnvStepReturn, VecEnvWrapper
+from ecc_baselines3.common.vec_env.base_vec_env import VecEnv, VecEnvObs, VecEnvStepReturn, VecEnvWrapper
 
 
 class VecCheckNan(VecEnvWrapper):

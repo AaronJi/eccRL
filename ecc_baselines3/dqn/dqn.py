@@ -6,10 +6,10 @@ import numpy as np
 import torch as th
 from torch.nn import functional as F
 
-from stable_baselines3.common.buffers import ReplayBuffer
+from ecc_baselines3.common.buffers import ReplayBuffer
 from ecc_baselines3.common.off_policy_algorithm import OffPolicyAlgorithm
 from ecc_baselines3.common.policies import BasePolicy
-from stable_baselines3.common.preprocessing import maybe_transpose
+from ecc_baselines3.common.preprocessing import maybe_transpose
 from ecc_baselines3.common.type_aliases import GymEnv, MaybeCallback, Schedule
 from ecc_baselines3.common.utils import get_linear_fn, is_vectorized_observation, polyak_update
 from ecc_baselines3.dqn.policies import CnnPolicy, DQNPolicy, MlpPolicy, MultiInputPolicy

@@ -7,7 +7,7 @@ import pandas as pd
 # matplotlib.use('TkAgg')  # Can change to 'Agg' for non-interactive mode
 from matplotlib import pyplot as plt
 
-from stable_baselines3.common.monitor import load_results
+from ecc_baselines3.common.monitor import load_results
 
 X_TIMESTEPS = "timesteps"
 X_EPISODES = "episodes"

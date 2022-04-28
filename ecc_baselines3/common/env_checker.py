@@ -5,8 +5,8 @@ import gym
 import numpy as np
 from gym import spaces
 
-from stable_baselines3.common.preprocessing import is_image_space_channels_first
-from stable_baselines3.common.vec_env import DummyVecEnv, VecCheckNan
+from ecc_baselines3.common.preprocessing import is_image_space_channels_first
+from ecc_baselines3.common.vec_env import DummyVecEnv, VecCheckNan
 
 
 def _is_numpy_array_space(space: spaces.Space) -> bool:

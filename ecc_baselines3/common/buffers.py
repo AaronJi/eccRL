@@ -6,14 +6,14 @@ import numpy as np
 import torch as th
 from gym import spaces
 
-from stable_baselines3.common.preprocessing import get_action_dim, get_obs_shape
-from stable_baselines3.common.type_aliases import (
+from ecc_baselines3.common.preprocessing import get_action_dim, get_obs_shape
+from ecc_baselines3.common.type_aliases import (
     DictReplayBufferSamples,
     DictRolloutBufferSamples,
     ReplayBufferSamples,
     RolloutBufferSamples,
 )
-from stable_baselines3.common.vec_env import VecNormalize
+from ecc_baselines3.common.vec_env import VecNormalize
 
 try:
     # Check memory used by replay buffer when possible

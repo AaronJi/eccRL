@@ -71,7 +71,7 @@ def maybe_transpose(observation: np.ndarray, observation_space: spaces.Space) ->
     :return: channel first observation if observation is an image
     """
     # Avoid circular import
-    from stable_baselines3.common.vec_env import VecTransposeImage
+    from ecc_baselines3.common.vec_env import VecTransposeImage
 
     if is_image_space(observation_space):
         if not (observation.shape == observation_space.shape or observation.shape[1:] == observation_space.shape):

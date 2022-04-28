@@ -5,8 +5,8 @@ import torch as th
 from torch import nn
 
 from ecc_baselines3.common.policies import BasePolicy, ContinuousCritic
-from stable_baselines3.common.preprocessing import get_action_dim
-from stable_baselines3.common.torch_layers import (
+from ecc_baselines3.common.preprocessing import get_action_dim
+from ecc_baselines3.common.torch_layers import (
     BaseFeaturesExtractor,
     CombinedExtractor,
     FlattenExtractor,

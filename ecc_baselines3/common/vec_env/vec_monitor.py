@@ -4,7 +4,7 @@ from typing import Optional, Tuple
 
 import numpy as np
 
-from stable_baselines3.common.vec_env.base_vec_env import VecEnv, VecEnvObs, VecEnvStepReturn, VecEnvWrapper
+from ecc_baselines3.common.vec_env.base_vec_env import VecEnv, VecEnvObs, VecEnvStepReturn, VecEnvWrapper
 
 
 class VecMonitor(VecEnvWrapper):
@@ -30,7 +30,7 @@ class VecMonitor(VecEnvWrapper):
         info_keywords: Tuple[str, ...] = (),
     ):
         # Avoid circular import
-        from stable_baselines3.common.monitor import Monitor, ResultsWriter
+        from ecc_baselines3.common.monitor import Monitor, ResultsWriter
 
         # This check is not valid for special `VecEnv`
         # like the ones created by Procgen, that does follow completely

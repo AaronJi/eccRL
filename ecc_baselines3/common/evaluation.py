@@ -54,7 +54,7 @@ def evaluate_policy(
     """
     is_monitor_wrapped = False
     # Avoid circular import
-    from stable_baselines3.common.monitor import Monitor
+    from ecc_baselines3.common.monitor import Monitor
 
     if not isinstance(env, VecEnv):
         env = DummyVecEnv([lambda: env])

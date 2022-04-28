@@ -3,9 +3,9 @@ from typing import Any, Callable, Dict, Optional, Type, Union
 
 import gym
 
-from stable_baselines3.common.atari_wrappers import AtariWrapper
-from stable_baselines3.common.monitor import Monitor
-from stable_baselines3.common.vec_env import DummyVecEnv, SubprocVecEnv, VecEnv
+from ecc_baselines3.common.atari_wrappers import AtariWrapper
+from ecc_baselines3.common.monitor import Monitor
+from ecc_baselines3.common.vec_env import DummyVecEnv, SubprocVecEnv, VecEnv
 
 
 def unwrap_wrapper(env: gym.Env, wrapper_class: Type[gym.Wrapper]) -> Optional[gym.Wrapper]:
