@@ -31,6 +31,10 @@ when n_env > 1
 
 ### the MCC mode
 
+```
+python train.py --algo ppo --env CartPole-v1 --mode ecc
+```
+
 
 ### the federated mode
 

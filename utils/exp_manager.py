@@ -156,6 +156,9 @@ class ExperimentManager(object):
         )
         self.params_path = f"{self.save_path}/{self.env_id}"
 
+        self.mode = self.args.mode
+
+
     def setup_experiment(self) -> Optional[Tuple[BaseAlgorithm, Dict[str, Any]]]:
         """
         Read hyperparameters, pre-process them (create schedules, wrappers, callbacks, action noise objects)
@@ -169,9 +172,12 @@ class ExperimentManager(object):
         self.create_log_folder()
         self.create_callbacks()
 
+        if self.mode == 'ecc':
+            print('ecc mode, currently dummy!')
+
         # Create env to have access to action space for action noise
         n_envs = 1 if self.algo == "ars" else self.n_envs
-        env = self.create_envs(n_envs, no_log=False)
+        env = self.create_envs(n_envs, no_log=False)  # wrap multiple environments into one environment with vectorized concatentated obs
 
         self._hyperparams = self._preprocess_action_noise(hyperparams, saved_hyperparams, env)
 
@@ -211,6 +217,9 @@ class ExperimentManager(object):
             )
 
         try:
+            if self.mode == 'ecc':
+                print('ecc mode, currently dummy!')
+
             model.learn(self.n_timesteps, **kwargs)
         except KeyboardInterrupt:
             # this allows to save the model when interrupting training

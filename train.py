@@ -22,6 +22,7 @@ seaborn.set()
 if __name__ == "__main__":  # noqa: C901
     parser = argparse.ArgumentParser()
     parser.add_argument("--algo", help="RL Algorithm", default="ppo", type=str, required=False, choices=list(ALGOS.keys()))
+    parser.add_argument("--mode", help="cloud and edge collaboration type", default="cloud", type=str, required=False)
     parser.add_argument("--env", type=str, default="CartPole-v1", help="environment ID")
     parser.add_argument("-tb", "--tensorboard-log", help="Tensorboard log dir", default="", type=str)
     parser.add_argument("-i", "--trained-agent", help="Path to a pretrained agent to continue training", default="", type=str)
@@ -127,6 +128,8 @@ if __name__ == "__main__":  # noqa: C901
     parser.add_argument("--wandb-project-name", type=str, default="sb3", help="the wandb's project name")
     parser.add_argument("--wandb-entity", type=str, default=None, help="the entity (team) of wandb's project")
     args = parser.parse_args()
+
+    print("*" * 10, 'Training mode: %s' % args.mode, "*" * 10)
 
     # Going through custom gym packages to let them register in the global registory
     for env_module in args.gym_packages:
