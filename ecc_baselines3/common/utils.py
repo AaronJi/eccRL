@@ -10,8 +10,6 @@ import gym
 import numpy as np
 import torch as th
 
-import stable_baselines3 as sb3
-
 # Check if tensorboard is available for pytorch
 try:
     from torch.utils.tensorboard import SummaryWriter
@@ -491,10 +489,16 @@ def get_system_info(print_info: bool = True) -> Tuple[Dict[str, str], str]:
     :return: Dictionary summing up the version for each relevant package
         and a formatted string.
     """
+    try:
+        import stable_baselines3 as sb3
+        sb3_version = sb3.__version__
+    except:
+        sb3_version = "1.5.0"
+
     env_info = {
         "OS": f"{platform.platform()} {platform.version()}",
         "Python": platform.python_version(),
-        "Stable-Baselines3": sb3.__version__,
+        "Stable-Baselines3": sb3_version,
         "PyTorch": th.__version__,
         "GPU Enabled": str(th.cuda.is_available()),
         "Numpy": np.__version__,
