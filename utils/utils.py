@@ -5,7 +5,6 @@ import os
 from typing import Any, Callable, Dict, List, Optional, Tuple, Union
 
 import gym
-import stable_baselines3 as sb3  # noqa: F401
 import torch as th  # noqa: F401
 import yaml
 from sb3_contrib import ARS, QRDQN, TQC, TRPO
