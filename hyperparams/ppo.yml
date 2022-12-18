@@ -412,7 +412,7 @@ HalfCheetah-v3:
 
 Hopper-v3:
   normalize: true
-  n_envs: 1
+  n_envs: 10
   policy: 'MlpPolicy'
   n_timesteps: !!float 1e6
   batch_size: 32

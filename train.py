@@ -140,11 +140,13 @@ if __name__ == "__main__":  # noqa: C901
 
     # If the environment is not found, suggest the closest match
     if env_id not in registered_envs:
-        try:
-            closest_match = difflib.get_close_matches(env_id, registered_envs, n=1)[0]
-        except IndexError:
-            closest_match = "'no close match found...'"
-        raise ValueError(f"{env_id} not found in gym registry, you maybe meant {closest_match}?")
+        # TODO deepmind control suite
+        if ':' not in env_id:
+            try:
+                closest_match = difflib.get_close_matches(env_id, registered_envs, n=1)[0]
+            except IndexError:
+                closest_match = "'no close match found...'"
+            raise ValueError(f"{env_id} not found in gym registry, you maybe meant {closest_match}?")
 
     # Unique id to ensure there is no race condition for the folder creation
     uuid_str = f"_{uuid.uuid4()}" if args.uuid else ""

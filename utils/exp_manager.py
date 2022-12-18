@@ -271,12 +271,26 @@ class ExperimentManager(object):
         # Load hyperparameters from yaml file
         with open(f"hyperparams/{self.algo}.yml", "r") as f:
             hyperparams_dict = yaml.safe_load(f)
-            if self.env_id in list(hyperparams_dict.keys()):
+
+            # TODO deepmind control suite
+            if ':' in self.env_id:
+                env_name = self.env_id.split(':')[0]
+            else:
+                env_name = self.env_id
+
+            if env_name in list(hyperparams_dict.keys()):
                 hyperparams = hyperparams_dict[self.env_id]
             elif self._is_atari:
                 hyperparams = hyperparams_dict["atari"]
             else:
-                raise ValueError(f"Hyperparameters not found for {self.algo}-{self.env_id}")
+                from rl_coach.environments.env_gym_wrapper import get_similar_env
+                similar_env_name = get_similar_env(env_name, hyperparams_dict.keys())
+                if similar_env_name is None:
+                    raise ValueError(f"Hyperparameters not found for {self.algo}-{self.env_id}")
+                else:
+                    hyperparams = hyperparams_dict[similar_env_name]
+
+
 
         if self.custom_hyperparams is not None:
             # Overwrite hyperparams if needed
@@ -430,6 +444,15 @@ class ExperimentManager(object):
         if self.save_freq > 0:
             # Account for the number of parallel environments
             self.save_freq = max(self.save_freq // self.n_envs, 1)
+            print('***************')
+            print(self._hyperparams)
+            print(self.log_folder)
+            print(self.tensorboard_log)
+            print(self.n_timesteps)
+            print(self.eval_freq)
+            print(self.save_freq)
+            print(self.n_envs)
+            #exit(5)
             self.callbacks.append(
                 CheckpointCallback(
                     save_freq=self.save_freq,
@@ -462,16 +485,22 @@ class ExperimentManager(object):
 
     @staticmethod
     def is_atari(env_id: str) -> bool:
+        if env_id not in gym.envs.registry.env_specs:
+            return False
         entry_point = gym.envs.registry.env_specs[env_id].entry_point
         return "AtariEnv" in str(entry_point)
 
     @staticmethod
     def is_bullet(env_id: str) -> bool:
+        if env_id not in gym.envs.registry.env_specs:
+            return False
         entry_point = gym.envs.registry.env_specs[env_id].entry_point
         return "pybullet_envs" in str(entry_point)
 
     @staticmethod
     def is_robotics_env(env_id: str) -> bool:
+        if env_id not in gym.envs.registry.env_specs:
+            return False
         entry_point = gym.envs.registry.env_specs[env_id].entry_point
         return "gym.envs.robotics" in str(entry_point) or "panda_gym.envs" in str(entry_point)
 
