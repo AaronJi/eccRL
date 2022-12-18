@@ -45,8 +45,8 @@ class ObservationType(Enum):
 class ControlSuiteEnvironmentParameters(EnvironmentParameters):
     def __init__(self, level=None):
         super().__init__(level=level)
-        #self.observation_type = ObservationType.Measurements
-        self.observation_type = ObservationType.Image_and_Measurements
+        self.observation_type = ObservationType.Measurements
+        #self.observation_type = ObservationType.Image_and_Measurements
         self.default_input_filter = ControlSuiteInputFilter
         self.default_output_filter = ControlSuiteOutputFilter
 
