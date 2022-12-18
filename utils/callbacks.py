@@ -7,7 +7,6 @@ from threading import Thread
 from typing import Optional
 
 import optuna
-from sb3_contrib import TQC
 from ecc_baselines3 import SAC
 from ecc_baselines3.common.callbacks import BaseCallback, EvalCallback
 from ecc_baselines3.common.logger import TensorBoardOutputFormat
@@ -131,7 +130,14 @@ class ParallelTrainCallback(BaseCallback):
         self.model.save(temp_file)
 
         # TODO: add support for other algorithms
-        for model_class in [SAC, TQC]:
+        extra_model_class = [SAC]
+        try:
+            from sb3_contrib import TQC
+            extra_model_class.append(TQC)
+        except:
+            pass
+
+        for model_class in extra_model_class:
             if isinstance(self.model, model_class):
                 self.model_class = model_class
                 break
