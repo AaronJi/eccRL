@@ -308,6 +308,12 @@ def save_to_zip_file(
     if data is not None:
         serialized_data = data_to_json(data)
 
+    try:
+        import stable_baselines3 as sb3
+        sb3_version = sb3.__version__
+    except:
+        sb3_version = "1.5.0"
+
     # Create a zip-archive and write our objects there.
     with zipfile.ZipFile(save_path, mode="w") as archive:
         # Do not try to save "None" elements
@@ -321,7 +327,7 @@ def save_to_zip_file(
                 with archive.open(file_name + ".pth", mode="w", force_zip64=True) as param_file:
                     th.save(dict_, param_file)
         # Save metadata: library version when file was saved
-        archive.writestr("_stable_baselines3_version", sb3.__version__)
+        archive.writestr("_stable_baselines3_version", sb3_version)
         # Save system info about the current python env
         archive.writestr("system_info.txt", get_system_info(print_info=False)[1])
 
