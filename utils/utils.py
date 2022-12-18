@@ -7,7 +7,7 @@ from typing import Any, Callable, Dict, List, Optional, Tuple, Union
 import gym
 import torch as th  # noqa: F401
 import yaml
-from sb3_contrib import ARS, QRDQN, TQC, TRPO
+
 from ecc_baselines3 import A2C, DDPG, DQN, PPO, SAC, TD3
 from ecc_baselines3.common.callbacks import BaseCallback
 from ecc_baselines3.common.env_util import make_vec_env
@@ -24,13 +24,16 @@ ALGOS = {
     "ppo": PPO,
     "sac": SAC,
     "td3": TD3,
-    # SB3 Contrib,
-    "ars": ARS,
-    "qrdqn": QRDQN,
-    "tqc": TQC,
-    "trpo": TRPO,
 }
 
+try:
+    from sb3_contrib import ARS, QRDQN, TQC, TRPO
+    ALGOS["ars"] = ARS
+    ALGOS["qrdqn"] = QRDQN
+    ALGOS["tqc"] = TQC
+    ALGOS["trpo"] = TRPO
+except:
+    print('no sb3_contrib')
 
 def flatten_dict_observations(env: gym.Env) -> gym.Env:
     assert isinstance(env.observation_space, gym.spaces.Dict)
