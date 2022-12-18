@@ -108,44 +108,45 @@ class ControlSuiteEnvironment(Environment):
 
         # load and initialize environment
         domain_name, task_name = self.env_id.split(":")
-        #self.env = suite.load(domain_name=domain_name, task_name=task_name, task_kwargs={'random': seed})
 
-        # @title A position controlled `cmu_humanoid`
-        from dm_control.locomotion.walkers import cmu_humanoid
-        from dm_control.locomotion.arenas import corridors as corridor_arenas
-        from dm_control.locomotion.tasks import corridors as corridor_tasks
-        from dm_control.composer.variation import distributions
-        from dm_control import composer
+        if domain_name == 'humanoid':
+            # @title A position controlled `cmu_humanoid`
+            from dm_control.locomotion.walkers import cmu_humanoid
+            from dm_control.locomotion.arenas import corridors as corridor_arenas
+            from dm_control.locomotion.tasks import corridors as corridor_tasks
+            from dm_control.composer.variation import distributions
+            from dm_control import composer
 
-        walker = cmu_humanoid.CMUHumanoidPositionControlledV2020(observable_options={'egocentric_camera': dict(enabled=True)})
+            walker = cmu_humanoid.CMUHumanoidPositionControlledV2020(observable_options={'egocentric_camera': dict(enabled=True)})
 
-        # @title A corridor arena with wall obstacles
-        arena = corridor_arenas.WallsCorridor(
-            wall_gap=3.,
-            wall_width=distributions.Uniform(2., 3.),
-            wall_height=distributions.Uniform(2.5, 3.5),
-            corridor_width=4.,
-            corridor_length=30.,
-        )
+            # @title A corridor arena with wall obstacles
+            arena = corridor_arenas.WallsCorridor(
+                wall_gap=3.,
+                wall_width=distributions.Uniform(2., 3.),
+                wall_height=distributions.Uniform(2.5, 3.5),
+                corridor_width=4.,
+                corridor_length=30.,
+            )
 
-        # @title A task to navigate the arena
-        task = corridor_tasks.RunThroughCorridor(
-            walker=walker,
-            arena=arena,
-            walker_spawn_position=(0.5, 0, 0),
-            target_velocity=3.0,
-            physics_timestep=0.005,
-            control_timestep=0.03,
-        )
+            # @title A task to navigate the arena
+            task = corridor_tasks.RunThroughCorridor(
+                walker=walker,
+                arena=arena,
+                walker_spawn_position=(0.5, 0, 0),
+                target_velocity=3.0,
+                physics_timestep=0.005,
+                control_timestep=0.03,
+            )
 
-        # @title The `RunThroughCorridor` environment
-        self.env = composer.Environment(
-            task=task,
-            time_limit=10,
-            random_state=np.random.RandomState(42),
-            strip_singleton_obs_buffer_dim=True,
-        )
-
+            # @title The `RunThroughCorridor` environment
+            self.env = composer.Environment(
+                task=task,
+                time_limit=10,
+                random_state=np.random.RandomState(42),
+                strip_singleton_obs_buffer_dim=True,
+            )
+        else:
+            self.env = suite.load(domain_name=domain_name, task_name=task_name, task_kwargs={'random': seed})
 
         if observation_type != ObservationType.Measurements:
             self.env = pixels.Wrapper(self.env, pixels_only=observation_type == ObservationType.Image)

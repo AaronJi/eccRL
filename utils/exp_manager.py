@@ -285,12 +285,13 @@ class ExperimentManager(object):
             else:
                 from rl_coach.environments.env_gym_wrapper import get_similar_env
                 similar_env_name = get_similar_env(env_name, hyperparams_dict.keys())
+
                 if similar_env_name is None:
                     raise ValueError(f"Hyperparameters not found for {self.algo}-{self.env_id}")
                 else:
                     hyperparams = hyperparams_dict[similar_env_name]
-
-
+                    print('found similar env %s' % similar_env_name)
+                    print(hyperparams)
 
         if self.custom_hyperparams is not None:
             # Overwrite hyperparams if needed
@@ -444,15 +445,6 @@ class ExperimentManager(object):
         if self.save_freq > 0:
             # Account for the number of parallel environments
             self.save_freq = max(self.save_freq // self.n_envs, 1)
-            print('***************')
-            print(self._hyperparams)
-            print(self.log_folder)
-            print(self.tensorboard_log)
-            print(self.n_timesteps)
-            print(self.eval_freq)
-            print(self.save_freq)
-            print(self.n_envs)
-            #exit(5)
             self.callbacks.append(
                 CheckpointCallback(
                     save_freq=self.save_freq,
